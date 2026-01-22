@@ -1,12 +1,18 @@
 # Nexus Platform
 
+![Version](https://img.shields.io/badge/version-0.0.2--SNAPSHOT-blue)
+[![Build Status](https://github.com/arpit/nexus-platform/actions/workflows/maven.yml/badge.svg)](https://github.com/arpit/nexus-platform/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 **Nexus Platform** is a production-grade, reusable Java library (`nexus-core`) designed to accelerate Microservices development with Spring Boot. It provides standard utilities for API responses, exception handling, auditing, security, and automation.
 
 The project follows a **multi-module Maven architecture**, allowing you to include only the dependencies you need.
 
+See [CHANGELOG.md](CHANGELOG.md) for version history.
+
 ## Modules
 
-*   **nexus-core-web**: Standardized API responses (`ApiResponse`), Global Exception Handling, and **OpenAPI/Swagger** support.
+*   **nexus-core-web**: Standardized API responses (`ApiResponse`), Global Exception Handling, **OpenAPI/Swagger**, and **Distributed Tracing**.
 *   **nexus-core-audit**: Performance monitoring with `@LogExecutionTime`.
 *   **nexus-core-security**: JWT authentication filter and security configuration.
 *   **nexus-core-automation**: Slack and Email alert integrations.
@@ -36,12 +42,12 @@ The project follows a **multi-module Maven architecture**, allowing you to inclu
 
 Add the specific modules you need to your Spring Boot application's `pom.xml`.
 
-**For Web Features (ApiResponse, Exception Handling, Swagger):**
+**For Web Features (ApiResponse, Exception Handling, Swagger, Tracing):**
 ```xml
 <dependency>
     <groupId>com.github.arpit.nexus</groupId>
     <artifactId>nexus-core-web</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -50,7 +56,7 @@ Add the specific modules you need to your Spring Boot application's `pom.xml`.
 <dependency>
     <groupId>com.github.arpit.nexus</groupId>
     <artifactId>nexus-core-audit</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -59,7 +65,7 @@ Add the specific modules you need to your Spring Boot application's `pom.xml`.
 <dependency>
     <groupId>com.github.arpit.nexus</groupId>
     <artifactId>nexus-core-security</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
 </dependency>
 ```
 *Note: Adding this module will enable a default Security Configuration that locks down all endpoints except `/auth/**`, `/public/**`, `/actuator/**`, and Swagger UI.*
@@ -69,7 +75,7 @@ Add the specific modules you need to your Spring Boot application's `pom.xml`.
 <dependency>
     <groupId>com.github.arpit.nexus</groupId>
     <artifactId>nexus-core-automation</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
 </dependency>
 ```
 
