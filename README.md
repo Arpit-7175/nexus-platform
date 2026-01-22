@@ -1,6 +1,6 @@
 # Nexus Platform
 
-![Version](https://img.shields.io/badge/version-0.0.2--SNAPSHOT-blue)
+![Version](https://img.shields.io/badge/version-0.0.3--SNAPSHOT-blue)
 [![Build Status](https://github.com/arpit/nexus-platform/actions/workflows/maven.yml/badge.svg)](https://github.com/arpit/nexus-platform/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -14,7 +14,7 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 *   **nexus-core-web**: Standardized API responses (`ApiResponse`), Global Exception Handling, **OpenAPI/Swagger**, and **Distributed Tracing**.
 *   **nexus-core-audit**: Performance monitoring with `@LogExecutionTime`.
-*   **nexus-core-security**: JWT authentication filter and security configuration.
+*   **nexus-core-security**: JWT authentication, **Rate Limiting (@RateLimit)**, and security configuration.
 *   **nexus-core-automation**: Slack and Email alert integrations.
 
 ## Getting Started
@@ -47,7 +47,7 @@ Add the specific modules you need to your Spring Boot application's `pom.xml`.
 <dependency>
     <groupId>com.github.arpit.nexus</groupId>
     <artifactId>nexus-core-web</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -56,16 +56,16 @@ Add the specific modules you need to your Spring Boot application's `pom.xml`.
 <dependency>
     <groupId>com.github.arpit.nexus</groupId>
     <artifactId>nexus-core-audit</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
 </dependency>
 ```
 
-**For Security (JWT):**
+**For Security (JWT, Rate Limiting):**
 ```xml
 <dependency>
     <groupId>com.github.arpit.nexus</groupId>
     <artifactId>nexus-core-security</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
 </dependency>
 ```
 *Note: Adding this module will enable a default Security Configuration that locks down all endpoints except `/auth/**`, `/public/**`, `/actuator/**`, and Swagger UI.*
@@ -75,7 +75,7 @@ Add the specific modules you need to your Spring Boot application's `pom.xml`.
 <dependency>
     <groupId>com.github.arpit.nexus</groupId>
     <artifactId>nexus-core-automation</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -123,6 +123,15 @@ You can use the **Authorize** button in Swagger UI to test secured endpoints by 
 @GetMapping("/hello")
 public ApiResponse<String> hello() {
     return ApiResponse.success("Hello World", "Success");
+}
+```
+
+**Rate Limiting:**
+```java
+@GetMapping("/limited")
+@RateLimit(limit = 10, duration = 60)
+public ApiResponse<String> limited() {
+    return ApiResponse.success("Success", "OK");
 }
 ```
 

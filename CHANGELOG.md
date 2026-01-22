@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.3] - 2023-10-28
+
+### Added
+- **Rate Limiting**: Added `@RateLimit` annotation using Bucket4j in `nexus-core-security`.
+- **Reference**: Added `/api/test/limited` endpoint to demonstrate rate limiting.
+
+## [0.0.2] - 2023-10-27
+
 ### Added
 - **CI/CD**: GitHub Actions workflow for automated builds.
 - **Tracing**: `MdcFilter` for distributed tracing (Request ID).

@@ -2,6 +2,7 @@ package com.github.arpit.nexus.service.controller;
 
 import com.github.arpit.nexus.core.audit.LogExecutionTime;
 import com.github.arpit.nexus.core.exception.ResourceNotFoundException;
+import com.github.arpit.nexus.core.security.ratelimit.RateLimit;
 import com.github.arpit.nexus.core.web.ApiResponse;
 import com.github.arpit.nexus.service.dto.UserDto;
 import jakarta.validation.Valid;
@@ -18,6 +19,12 @@ public class TestController {
     public ApiResponse<String> hello() {
         log.info("Handling hello request");
         return ApiResponse.success("Hello from Nexus Reference Service!", "Operation successful");
+    }
+
+    @GetMapping("/limited")
+    @RateLimit(limit = 5, duration = 60)
+    public ApiResponse<String> limited() {
+        return ApiResponse.success("You are within the rate limit!", "Success");
     }
 
     @GetMapping("/error")

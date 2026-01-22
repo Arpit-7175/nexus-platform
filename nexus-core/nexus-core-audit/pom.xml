@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.arpit.nexus</groupId>
         <artifactId>nexus-core</artifactId>
-        <version>0.0.2-SNAPSHOT</version>
+        <version>0.0.3-SNAPSHOT</version>
     </parent>
     <artifactId>nexus-core-audit</artifactId>
     <name>nexus-core-audit</name>
