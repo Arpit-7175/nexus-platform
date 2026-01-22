@@ -6,7 +6,7 @@ The project follows a **multi-module Maven architecture**, allowing you to inclu
 
 ## Modules
 
-*   **nexus-core-web**: Standardized API responses (`ApiResponse`) and Global Exception Handling.
+*   **nexus-core-web**: Standardized API responses (`ApiResponse`), Global Exception Handling, and **OpenAPI/Swagger** support.
 *   **nexus-core-audit**: Performance monitoring with `@LogExecutionTime`.
 *   **nexus-core-security**: JWT authentication filter and security configuration.
 *   **nexus-core-automation**: Slack and Email alert integrations.
@@ -36,7 +36,7 @@ The project follows a **multi-module Maven architecture**, allowing you to inclu
 
 Add the specific modules you need to your Spring Boot application's `pom.xml`.
 
-**For Web Features (ApiResponse, Exception Handling):**
+**For Web Features (ApiResponse, Exception Handling, Swagger):**
 ```xml
 <dependency>
     <groupId>com.github.arpit.nexus</groupId>
@@ -62,7 +62,7 @@ Add the specific modules you need to your Spring Boot application's `pom.xml`.
     <version>0.0.1-SNAPSHOT</version>
 </dependency>
 ```
-*Note: Adding this module will enable a default Security Configuration that locks down all endpoints except `/auth/**`, `/public/**`, and `/actuator/**`.*
+*Note: Adding this module will enable a default Security Configuration that locks down all endpoints except `/auth/**`, `/public/**`, `/actuator/**`, and Swagger UI.*
 
 **For Automation (Slack, Email):**
 ```xml
@@ -93,7 +93,7 @@ Add the following properties to your `application.properties` or `application.ym
 nexus.automation.slack.webhooks.GENERAL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 nexus.automation.slack.webhooks.ALERTS=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 
-# Email (Standard Spring Boot Mail properties)
+# Email (Optional - Service is only created if host is defined)
 spring.mail.host=smtp.gmail.com
 spring.mail.port=587
 spring.mail.username=your-email@gmail.com
@@ -102,6 +102,13 @@ spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
 nexus.automation.email.from=noreply@nexus.com
 ```
+
+## API Documentation (Swagger)
+
+If you include `nexus-core-web`, Swagger UI is automatically available at:
+`http://localhost:8080/swagger-ui.html`
+
+You can use the **Authorize** button in Swagger UI to test secured endpoints by pasting your JWT token.
 
 ## Examples
 
