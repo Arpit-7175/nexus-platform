@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.4] - 2023-10-29
+
+### Added
+- **Redis Module**: New `nexus-core-redis` module for standardized Redis integration.
+- **Redis Service**: `RedisService` utility for easy key-value operations.
+- **JSON Serialization**: Configured `RedisTemplate` to use JSON serialization by default.
+- **Reference**: Added `/api/redis` endpoints to demonstrate Redis usage.
+
 ## [0.0.3] - 2023-10-28
 
 ### Added

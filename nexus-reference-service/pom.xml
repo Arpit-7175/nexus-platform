@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.arpit.nexus</groupId>
         <artifactId>nexus-platform</artifactId>
-        <version>0.0.3-SNAPSHOT</version>
+        <version>0.0.4-SNAPSHOT</version>
     </parent>
     <artifactId>nexus-reference-service</artifactId>
     <name>nexus-reference-service</name>
@@ -16,28 +16,35 @@
         <dependency>
             <groupId>com.github.arpit.nexus</groupId>
             <artifactId>nexus-core-web</artifactId>
-            <version>0.0.3-SNAPSHOT</version>
+            <version>0.0.4-SNAPSHOT</version>
         </dependency>
 
         <!-- Core Audit Module -->
         <dependency>
             <groupId>com.github.arpit.nexus</groupId>
             <artifactId>nexus-core-audit</artifactId>
-            <version>0.0.3-SNAPSHOT</version>
+            <version>0.0.4-SNAPSHOT</version>
         </dependency>
 
         <!-- Core Security Module -->
         <dependency>
             <groupId>com.github.arpit.nexus</groupId>
             <artifactId>nexus-core-security</artifactId>
-            <version>0.0.3-SNAPSHOT</version>
+            <version>0.0.4-SNAPSHOT</version>
         </dependency>
 
         <!-- Core Automation Module -->
         <dependency>
             <groupId>com.github.arpit.nexus</groupId>
             <artifactId>nexus-core-automation</artifactId>
-            <version>0.0.3-SNAPSHOT</version>
+            <version>0.0.4-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Core Redis Module -->
+        <dependency>
+            <groupId>com.github.arpit.nexus</groupId>
+            <artifactId>nexus-core-redis</artifactId>
+            <version>0.0.4-SNAPSHOT</version>
         </dependency>
 
         <dependency>

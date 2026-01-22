@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.arpit.nexus</groupId>
         <artifactId>nexus-platform</artifactId>
-        <version>0.0.3-SNAPSHOT</version>
+        <version>0.0.4-SNAPSHOT</version>
     </parent>
     <artifactId>nexus-core</artifactId>
     <packaging>pom</packaging>
@@ -17,6 +17,7 @@
         <module>nexus-core-audit</module>
         <module>nexus-core-security</module>
         <module>nexus-core-automation</module>
+        <module>nexus-core-redis</module>
     </modules>
 
     <dependencies>

@@ -7,23 +7,23 @@
         <artifactId>nexus-core</artifactId>
         <version>0.0.4-SNAPSHOT</version>
     </parent>
-    <artifactId>nexus-core-web</artifactId>
-    <name>nexus-core-web</name>
-    <description>Nexus Core - Web Utilities</description>
+    <artifactId>nexus-core-redis</artifactId>
+    <name>nexus-core-redis</name>
+    <description>Nexus Core - Redis Utilities</description>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.3.0</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 </project>

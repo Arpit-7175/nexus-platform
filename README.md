@@ -1,6 +1,6 @@
 # Nexus Platform
 
-![Version](https://img.shields.io/badge/version-0.0.3--SNAPSHOT-blue)
+![Version](https://img.shields.io/badge/version-0.0.4--SNAPSHOT-blue)
 [![Build Status](https://github.com/arpit/nexus-platform/actions/workflows/maven.yml/badge.svg)](https://github.com/arpit/nexus-platform/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -16,6 +16,7 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 *   **nexus-core-audit**: Performance monitoring with `@LogExecutionTime`.
 *   **nexus-core-security**: JWT authentication, **Rate Limiting (@RateLimit)**, and security configuration.
 *   **nexus-core-automation**: Slack and Email alert integrations.
+*   **nexus-core-redis**: Standardized Redis configuration and utilities.
 
 ## Getting Started
 
@@ -23,6 +24,7 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 *   Java 17+
 *   Maven 3.8+
+*   Redis (Optional, required for `nexus-core-redis`)
 
 ### Installation
 
@@ -47,7 +49,7 @@ Add the specific modules you need to your Spring Boot application's `pom.xml`.
 <dependency>
     <groupId>com.github.arpit.nexus</groupId>
     <artifactId>nexus-core-web</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -56,7 +58,7 @@ Add the specific modules you need to your Spring Boot application's `pom.xml`.
 <dependency>
     <groupId>com.github.arpit.nexus</groupId>
     <artifactId>nexus-core-audit</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -65,7 +67,7 @@ Add the specific modules you need to your Spring Boot application's `pom.xml`.
 <dependency>
     <groupId>com.github.arpit.nexus</groupId>
     <artifactId>nexus-core-security</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
 </dependency>
 ```
 *Note: Adding this module will enable a default Security Configuration that locks down all endpoints except `/auth/**`, `/public/**`, `/actuator/**`, and Swagger UI.*
@@ -75,7 +77,16 @@ Add the specific modules you need to your Spring Boot application's `pom.xml`.
 <dependency>
     <groupId>com.github.arpit.nexus</groupId>
     <artifactId>nexus-core-automation</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
+</dependency>
+```
+
+**For Redis:**
+```xml
+<dependency>
+    <groupId>com.github.arpit.nexus</groupId>
+    <artifactId>nexus-core-redis</artifactId>
+    <version>0.0.4-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -109,6 +120,12 @@ spring.mail.properties.mail.smtp.starttls.enable=true
 nexus.automation.email.from=noreply@nexus.com
 ```
 
+**Redis:**
+```properties
+spring.data.redis.host=localhost
+spring.data.redis.port=6379
+```
+
 ## API Documentation (Swagger)
 
 If you include `nexus-core-web`, Swagger UI is automatically available at:
@@ -132,6 +149,16 @@ public ApiResponse<String> hello() {
 @RateLimit(limit = 10, duration = 60)
 public ApiResponse<String> limited() {
     return ApiResponse.success("Success", "OK");
+}
+```
+
+**Redis Operations:**
+```java
+@Autowired
+private RedisService redisService;
+
+public void cacheData() {
+    redisService.set("user:1", new User("Arpit"), 10, TimeUnit.MINUTES);
 }
 ```
 
